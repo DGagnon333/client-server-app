@@ -7,7 +7,7 @@ const fs = require('fs');
 
 app.use(cors());
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Max requests per window
