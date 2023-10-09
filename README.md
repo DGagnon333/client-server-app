@@ -1,8 +1,6 @@
-# inm5151_inf6150_projet_pilote_a23
+# Client-server application
 
-## Getting Started
-
-### Local Development
+## Local Development
 
 1. Clone the repository to your local machine:
 2. Install project dependencies:
