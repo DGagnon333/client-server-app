@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
+const fs = require('fs');
 
 app.use(cors());
 
@@ -14,11 +15,15 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-//for developpment
-app.use(cors({ origin: "*" }));
-
-//for production
-//app.use(cors({ origin: <client-url> }));
+// Middleware to load route files dynamically
+const routeDir = `${__dirname}/routes`;
+fs.readdirSync(routeDir).forEach((file) => {
+  if (file.endsWith('.js')) {
+    const route = require(`${routeDir}/${file}`);
+    const routePath = file.replace('.js', ''); // Use the filename as the route path
+    app.use(`/api/${routePath}`, route);
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
