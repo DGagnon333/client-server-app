@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+.DS_Store
+
+# Expo-specific
+.expo/
+.expo-shared/
+.cache/
+watchman*
+
+# Build and bundled files
+/build/
+/dist/
+*.apk
+*.ipa

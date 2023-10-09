@@ -8,8 +8,16 @@
 2. Install project dependencies:
 3. Start the server in development mode:
 
-* The server will run locally on `http://localhost:5000`.
+* The server will run with express locally on `http://localhost:5000`.
+```sh
+npm run dev
+```
 * To test it try the `/api` route
+
+* The client will run with react-native using expo-cli.
+```sh
+npx create-expo-app -e with-router
+```
 
 
 ## Branch System
