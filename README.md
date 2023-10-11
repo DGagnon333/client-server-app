@@ -17,6 +17,7 @@ npm run dev
 npx create-expo-app -e with-router
 ```
 
+To use an sqlite bs, for the moment, simply create a file named `exercise.db` inside server. the tables will be created automatically starting the server.
 
 ## Branch System
 

@@ -39,7 +39,7 @@ out/
 .yarn-integrity
 
 # dotenv environment variable file
-.env
+#.env
 
 # IDE files
 .vscode/
