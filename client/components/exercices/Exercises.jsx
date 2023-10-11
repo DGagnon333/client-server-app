@@ -1,26 +1,25 @@
 import React from 'react';
 import { View, Text, FlatList, ActivityIndicator } from 'react-native';
 import useFetch from '../../hook/useFetch'; // Import your useFetch hook
+import ExerciseForm from './ExerciceForm';
 
-const Exercices = () => {
-  // Use the useFetch hook to fetch exercises
-  const { data, isLoading, error } = useFetch('exercices');
-
-  console.log(data)
+const Exercises = () => {
+  const { data, isLoading, error, refetch } = useFetch('exercises');
 
   return (
     <View>
-      <Text style={styles.title}>Exercises</Text>
+      <ExerciseForm onExerciseCreate={refetch} />
+      <Text>List of Exercises:</Text>
       {isLoading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : error ? (
         <Text style={styles.error}>Error: {error.message}</Text>
-      ) : data && data.exercices ? (
+      ) : data && data.exercises ? (
         <FlatList
-          data={data.exercices}
-          keyExtractor={(item, index) => index.toString()}
+          data={data.exercises}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
-            <Text style={styles.exercise}>{item}</Text>
+            <Text>{item.name}</Text>
           )}
         />
       ) : (
@@ -31,19 +30,10 @@ const Exercices = () => {
 };
 
 const styles = {
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
   error: {
     color: 'red',
     fontSize: 16,
     marginBottom: 10,
-  },
-  exercise: {
-    fontSize: 18,
-    marginBottom: 5,
   },
   noData: {
     fontSize: 18,
@@ -52,4 +42,4 @@ const styles = {
   },
 };
 
-export default Exercices;
+export default Exercises;

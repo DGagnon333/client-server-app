@@ -1,22 +1,24 @@
+require('dotenv').config();
+
 const express = require('express');
+const bodyParser = require('body-parser')
 const cors = require('cors');
 const app = express();
 const rateLimit = require('express-rate-limit');
-require('dotenv').config();
 const fs = require('fs');
-
-app.use(cors());
-
 const PORT = process.env.PORT;
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Max requests per window
 });
+const routeDir = `${__dirname}/routes`;
 
 app.use(limiter);
+app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // Middleware to load route files dynamically
-const routeDir = `${__dirname}/routes`;
 fs.readdirSync(routeDir).forEach((file) => {
   if (file.endsWith('.js')) {
     const route = require(`${routeDir}/${file}`);

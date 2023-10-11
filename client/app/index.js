@@ -1,11 +1,13 @@
 import { Text, View } from 'react-native';
-import Exercices from '../components/home/Exercices';
+import Exercises from '../components/exercices/Exercises';
 
 const Home = () => {
     return (
         <View>
             <Text>Home</Text>
-            <Exercices />
+            <View>
+                <Exercises />
+            </View>
         </View>
     )
 }
