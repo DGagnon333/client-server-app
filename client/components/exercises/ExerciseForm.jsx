@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import ExerciseService from '../../services/ExerciseService';
 
-const ExerciseForm = () => {
+const ExerciseForm = ({ onExerciseCreated }) => {
   const [exerciseName, setExerciseName] = useState('');
 
   const createExercise = async () => {
@@ -13,6 +13,7 @@ const ExerciseForm = () => {
       if (createdExerciseData) {
         console.log('Exercise created:', createdExerciseData);
         setExerciseName('');
+        onExerciseCreated(); // Call the callback to refresh the exercise list.
       } else {
         console.error('Failed to create exercise');
       }
