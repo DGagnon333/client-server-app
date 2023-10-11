@@ -22,9 +22,10 @@ const ExerciseForm = () => {
   };
 
   return (
-    <View>
-      <Text>Create New Exercise:</Text>
+    <View style={styles.container}>
+      <Text style={styles.label}>Create New Exercise:</Text>
       <TextInput
+        style={styles.input}
         value={exerciseName}
         onChangeText={(text) => setExerciseName(text)}
         placeholder="Exercise name"
@@ -32,6 +33,25 @@ const ExerciseForm = () => {
       <Button title="Create Exercise" onPress={createExercise} />
     </View>
   );
+};
+
+const styles = {
+  container: {
+    margin: 10,
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  input: {
+    fontSize: 16,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    marginBottom: 10,
+  },
 };
 
 export default ExerciseForm;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // Import the SQLite database
+const db = require('../db/db-access');
 
 // Route to get all exercises
 router.get('/', (req, res) => {
