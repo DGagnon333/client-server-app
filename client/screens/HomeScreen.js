@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import ExerciseForm from '../components/exercises/ExerciseForm';
 import ExerciseList from '../components/exercises/ExerciseList';
 
-const App = () => {
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Exercise Tracker</Text>
@@ -12,8 +12,6 @@ const App = () => {
     </View>
   );
 };
-
-export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -27,3 +25,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+export default HomeScreen;
