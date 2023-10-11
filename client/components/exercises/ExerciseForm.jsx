@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import ExerciseService from '../../services/ExerciseService';
 
-const ExerciseForm = () => {
+const ExerciseForm = ({ onExerciseCreated }) => {
   const [exerciseName, setExerciseName] = useState('');
 
   const createExercise = async () => {
@@ -13,6 +13,7 @@ const ExerciseForm = () => {
       if (createdExerciseData) {
         console.log('Exercise created:', createdExerciseData);
         setExerciseName('');
+        onExerciseCreated(); // Call the callback to refresh the exercise list.
       } else {
         console.error('Failed to create exercise');
       }
@@ -22,9 +23,10 @@ const ExerciseForm = () => {
   };
 
   return (
-    <View>
-      <Text>Create New Exercise:</Text>
+    <View style={styles.container}>
+      <Text style={styles.label}>Create New Exercise:</Text>
       <TextInput
+        style={styles.input}
         value={exerciseName}
         onChangeText={(text) => setExerciseName(text)}
         placeholder="Exercise name"
@@ -32,6 +34,25 @@ const ExerciseForm = () => {
       <Button title="Create Exercise" onPress={createExercise} />
     </View>
   );
+};
+
+const styles = {
+  container: {
+    margin: 10,
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  input: {
+    fontSize: 16,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    marginBottom: 10,
+  },
 };
 
 export default ExerciseForm;

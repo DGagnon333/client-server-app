@@ -17,7 +17,17 @@ npm run dev
 npx create-expo-app -e with-router
 ```
 
-To use an sqlite bs, for the moment, simply create a file named `exercise.db` inside server. the tables will be created automatically starting the server.
+To initialise the sqlite db
+```sh
+npm run init-db
+```
+
+To reset the sqlite db
+```sh
+npm run init-db -- --reset
+```
+
+> if you are on windows and don't have sqlite, download `sqlite-tools-win32-x86-3430200.zip` [here](https://sqlite.org/download.html), extract it under C:\Users\Your-User\, go to Modify Environment Variables, modify the Path variable by adding a path to the extracted folder. You may need to restart your IDE.
 
 ## Branch System
 
