@@ -1,12 +1,9 @@
-// controllers/ExerciseController.js
-const express = require('express');
-const router = express.Router();
-const db = require('../db');
+const db = require('../db/db-access');
 
-// Route to get all exercises
-router.get('/', (req, res) => {
+// Get all exercises
+const getAllExercises = (req, res) => {
   const query = 'SELECT * FROM exercises';
-
+  
   db.all(query, (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -14,8 +11,36 @@ router.get('/', (req, res) => {
       return;
     }
 
-    res.json({ exercises: rows });
+    res.status(200).json({ exercises: rows });
   });
-});
+};
 
-module.exports = router;
+// Create a new exercise
+const createExercise = (req, res) => {
+  const { name } = req.body;
+
+  if (!name) {
+    res.status(400).json({ error: 'Exercise name is required' });
+    return;
+  }
+
+  const query = 'INSERT INTO exercises (name) VALUES (?)';
+
+  db.run(query, [name], function (err) {
+    if (err) {
+      console.error(err.message);
+      res.status(500).json({ error: 'Server error' });
+      return;
+    }
+
+    console.log('Creating exercise: ' + JSON.stringify(req.body))
+    res.status(201).json({
+      message: 'Exercise created successfully',
+    });
+  });
+};
+
+module.exports = {
+  getAllExercises,
+  createExercise,
+};

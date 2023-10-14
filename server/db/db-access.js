@@ -1,4 +1,3 @@
-// db-initiate.js
 const sqlite3 = require('sqlite3').verbose();
 
 const dbPath = './db/sysap.db';
